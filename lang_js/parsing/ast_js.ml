@@ -374,8 +374,8 @@ and type_ =
 
   | TypeTodo of todo_category * any list
 
-and type_parameter = ident (* TODO: constraints *)
-and type_parameter_constraint = type_
+and a_type_parameter = ident (* TODO: constraints *)
+and a_type_parameter_constraint = type_
 
 and tuple_type_member =
   (* simple tuple type element *)
@@ -561,14 +561,14 @@ and module_directive =
  * move those at the stmt level.
 *)
 (* less: can remove and below when StmtTodo disappear *)
-and toplevel = stmt
+and a_toplevel = stmt
 (* [@@deriving show { with_path = false} ] (* with tarzan *) *)
 
 (*****************************************************************************)
 (* Program *)
 (*****************************************************************************)
 
-and program = toplevel list
+and program = a_toplevel list
 (* [@@deriving show { with_path = false} ] (* with tarzan *) *)
 
 (*****************************************************************************)
