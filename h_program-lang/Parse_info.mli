@@ -139,7 +139,9 @@ val mk_info_of_loc: token_location -> t
 val is_fake: t -> bool
 val first_loc_of_file: Common.filename -> token_location
 
+(* Return the string contained in the token. *)
 val str_of_info   : t -> string
+
 val line_of_info  : t -> int
 val col_of_info   : t -> int
 val pos_of_info   : t -> int
@@ -221,10 +223,19 @@ val yyback: int -> Lexing.lexbuf -> unit
 (* can deprecate? *)
 val tokinfo_str_pos:  string -> int -> t
 
+(* Keep the location info but replace the string. *)
 val rewrap_str: string -> t -> t
+
+(* Keep the location info but extend the original string. *)
 val tok_add_s: string -> t -> t
-(* used mainly by tree-sitter based parsers in semgrep *)
+
+(*
+   Concatenate tokens into one. The type ensures at least one token is
+   provided.
+   Used mainly by tree-sitter based parsers in semgrep.
+*)
 val combine_infos: t -> t list -> t
+
 (* this function assumes the full content of the token is on the same
  * line, otherwise the line/col of the result might be wrong *)
 val split_info_at_pos: int -> t -> t * t
